@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIRECCIÓN GENERAL DE ACCIÓN PSICOLÓGICA — Sistema ERRP-74</title>
+<meta name="description" content="Sistema Centralizado de Homologación de Discursos de Investidura Presidencial y Acción Psicológica de Masas. Proyecto clasificado ERRP-74.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papel: #f1ebd9;
+    --papel-oscuro: #e2d7be;
+    --papel-borde: #c4b595;
+    --fondo-mesa: #181916;
+    --tinta: #1a1815;
+    --tinta-tenue: #544f45;
+    --sello-rojo: #9e2424;
+    --sello-rojo-bg: rgba(158, 36, 36, 0.08);
+    --sello-azul: #1a3c61;
+    --verde-militar: #2d382b;
+    --dorado-oficial: #a67c1e;
+    --linea-guia: #cfc1a0;
+    --cinta-negra: #11120f;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--fondo-mesa);color:var(--tinta)}
+  body{
+    font-family:"Courier Prime","Courier New",Courier,monospace;
+    line-height:1.5;
+    background-color:#181a17;
+    background-image: 
+      radial-gradient(#262a24 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.85));
+    background-size: 20px 20px, 100% 100%;
+    min-height: 100vh;
+  }
+
+  /* BARRA DE CLASIFICACIÓN SUPERIOR (1970s CONFIDENTIAL STRIP) */
+  .security-strip{
+    background: #0d0e0c;
+    color: #e5a93c;
+    border-bottom: 2px solid #333830;
+    padding: 6px 16px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+  }
+  .security-strip span.warning{
+    color: #e64545;
+    background: rgba(230,69,69,0.15);
+    padding: 2px 8px;
+    border: 1px dashed #e64545;
+  }
+
+  /* ENCABEZADO INSTITUCIONAL */
+  header{
+    background: #20241f;
+    border-bottom: 3px solid #000;
+    color: #f1ebd9;
+    padding: 24px 20px 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  }
+  .header-wrap{
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .escudo{
+    width: 64px;
+    height: 64px;
+    border: 2px solid #a67c1e;
+    background: #141713;
+    display: grid;
+    place-items: center;
+    font-size: 1.9rem;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+  }
+  .header-txt{
+    flex: 1;
+    min-width: 260px;
+  }
+  .header-txt .gob{
+    font-size: 0.74rem;
+    letter-spacing: 2px;
+    color: #a67c1e;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .header-txt h1{
+    margin: 2px 0;
+    font-family: 'Cinzel', "Times New Roman", serif;
+    font-size: 1.35rem;
+    letter-spacing: 0.5px;
+    color: #f7f4ea;
+    text-transform: uppercase;
+  }
+  .header-txt .sub{
+    font-size: 0.76rem;
+    color: #a3a89e;
+    letter-spacing: 0.5px;
+  }
+  .sello-header{
+    border: 2px solid var(--sello-rojo);
+    color: var(--sello-rojo);
+    padding: 6px 12px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transform: rotate(-3deg);
+    background: rgba(158,36,36,0.12);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+  }
+
+  /* CONTENEDOR PRINCIPAL / CARPETA EXPEDIENTE */
+  .wrap{
+    max-width: 860px;
+    margin: 24px auto 60px;
+    padding: 0 14px;
+  }
+
+  /* PESTAÑAS DE EXPEDIENTE (FOLDER TABS) */
+  .steps{
+    display: flex;
+    gap: 4px;
+    margin-bottom: -2px;
+    position: relative;
+    z-index: 2;
+    overflow-x: auto;
+  }
+  .step{
+    background: #343a31;
+    color: #a9b0a4;
+    border: 2px solid #141713;
+    border-bottom: none;
+    padding: 9px 14px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: default;
+    border-radius: 6px 6px 0 0;
+    text-transform: uppercase;
+    transition: all 0.15s ease;
+  }
+  .step .n{
+    background: #1d211b;
+    color: #eadaad;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    border: 1px solid #485244;
+  }
+  .step.activo{
+    background: var(--papel);
+    color: var(--tinta);
+    border-color: #000;
+    padding-top: 11px;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+  }
+  .step.activo .n{
+    background: var(--sello-rojo);
+    color: #fff;
+    border-color: var(--sello-rojo);
+  }
+  .step.hecho{
+    color: #d1dacb;
+  }
+  .step.hecho .n{
+    background: var(--verde-militar);
+    color: #a8d5a2;
+  }
+
+  /* HOJA DE EXPEDIENTE / CUERPO DEL FORMULARIO */
+  .pantalla{
+    display: none;
+    background: var(--papel);
+    color: var(--tinta);
+    border: 3px solid #000;
+    box-shadow: 12px 14px 0 #0c0d0b;
+    padding: 34px 36px;
+    position: relative;
+    background-image: 
+      linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .pantalla.activa{
+    display: block;
+    animation: typewriterFade .2s ease;
+  }
+  @keyframes typewriterFade{from{opacity:0.8;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+  /* PERFORACIONES DE ARCHIVADOR A LA IZQUIERDA */
+  .pantalla::before{
+    content: "";
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 12px;
+    width: 14px;
+    background: radial-gradient(circle, #20241f 5px, transparent 6px) repeat-y;
+    background-size: 14px 120px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* ENCABEZADO DE FICHA OFICIAL */
+  .doc-header{
+    border-bottom: 2px dashed var(--papel-borde);
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .doc-header .doc-id{
+    font-size: 0.72rem;
+    color: var(--tinta-tenue);
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  h2{
+    margin: 4px 0;
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+    color: #111;
+    text-transform: uppercase;
+  }
+  .lead{
+    font-size: 0.85rem;
+    color: var(--tinta-tenue);
+    margin: 0;
+    font-style: italic;
+  }
+  .doc-stamp{
+    border: 2px solid var(--sello-rojo);
+    color: var(--sello-rojo);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transform: rotate(2deg);
+  }
+
+  /* CAMPOS Y FORMULARIOS VINTAGE */
+  label{
+    display: block;
+    margin: 18px 0 6px;
+    font-weight: 700;
+    font-size: 0.84rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .req::after{content:" [OBLIGATORIO]";color:var(--sello-rojo);font-size:0.75rem}
+  
+  input[type=text],textarea,select{
+    width: 100%;
+    background: #fcf9f2;
+    border: 2px solid #2b2823;
+    color: #111;
+    padding: 11px 12px;
+    font-size: 0.95rem;
+    font-family: "Courier Prime", monospace;
+    transition: border-color .15s, background .15s;
+    box-shadow: inset 2px 2px 4px rgba(0,0,0,0.06);
+  }
+  input:focus,textarea:focus,select:focus{
+    outline: none;
+    border-color: var(--sello-azul);
+    background: #fff;
+    box-shadow: 0 0 0 2px rgba(26,60,97,0.25);
+  }
+  textarea{resize:vertical;min-height:64px}
+  .row{display:flex;gap:16px;flex-wrap:wrap}
+  .row>div{flex:1;min-width:200px}
+  .hint{font-size:0.75rem;color:var(--tinta-tenue);margin-top:5px;line-height:1.4}
+
+  /* CASILLAS PROTOCOLARES / INTERRUPTORES */
+  .toggle{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 14px 0;
+    background: var(--papel-oscuro);
+    border: 2px solid var(--papel-borde);
+    padding: 12px 14px;
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.08);
+  }
+  .toggle input{
+    width: 20px;
+    height: 20px;
+    accent-color: var(--verde-militar);
+    cursor: pointer;
+  }
+  .toggle label{
+    margin: 0;
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+  }
+
+  /* DETALLES DE CÓMPUTO ANALÓGICO / API KEY */
+  details.ai{
+    background: #e6dcbf;
+    border: 2px dashed #998b6d;
+    padding: 14px 16px;
+    margin-top: 22px;
+  }
+  details.ai summary{
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--sello-azul);
+    font-size: 0.86rem;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  details.ai .grid{margin-top:12px}
+
+  /* POTENCIÓMETRO SLIDER VINTAGE */
+  .slider{display:flex;align-items:center;gap:14px;background:var(--papel-oscuro);border:2px solid var(--papel-borde);padding:10px 14px}
+  .slider input{flex:1;accent-color:var(--sello-rojo);height:8px;cursor:pointer}
+  .slider .val{font-weight:700;color:var(--sello-rojo);min-width:140px;text-align:right;font-size:0.84rem}
+
+  /* CAJA DE MOVIMIENTOS ERRP */
+  .mov{
+    background: #f7f3e8;
+    border: 2px solid #222;
+    padding: 16px 18px;
+    margin: 18px 0;
+    position: relative;
+  }
+  .mov b{
+    color: var(--sello-azul);
+    font-size: 0.92rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .mov .badge{
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    font-size: 0.7rem;
+    color: #fff;
+    background: var(--verde-militar);
+    padding: 3px 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .mov .ej{
+    font-size: 0.78rem;
+    color: var(--tinta-tenue);
+    margin-top: 8px;
+    border-left: 3px solid var(--sello-rojo);
+    padding-left: 10px;
+    line-height: 1.5;
+  }
+
+  /* BOTONERA PROTOCOLAR (TIPO MÁQUINA DE ESCRIBIR) */
+  .btns{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 28px;
+    gap: 12px;
+    flex-wrap: wrap;
+    border-top: 2px dashed var(--papel-borde);
+    padding-top: 18px;
+  }
+  button{
+    background: var(--verde-militar);
+    color: #f7f4ea;
+    border: 2px solid #111;
+    border-radius: 0;
+    padding: 12px 22px;
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 #000;
+    transition: transform .05s, box-shadow .05s, background .15s;
+  }
+  button:hover{background:#3a4938}
+  button:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #000}
+  button.sec{
+    background: var(--papel-oscuro);
+    color: var(--tinta);
+    border-color: #222;
+  }
+  button.sec:hover{background:#d5c7a5}
+  button.ghost{
+    background: transparent;
+    border: 2px dashed var(--sello-rojo);
+    color: var(--sello-rojo);
+  }
+  button.ghost:hover{background:var(--sello-rojo-bg)}
+  button:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+
+  /* BARRA DE HERRAMIENTAS DE PROCLAMA */
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+  .toolbar button{padding:10px 16px;font-size:0.8rem}
+
+  /* PAPEL MECANOGRAFIADO DEL DISCURSO */
+  .memo-sheet{
+    background: #fffdf7;
+    border: 2px solid #222;
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
+    padding: 28px 32px;
+    margin: 18px 0;
+    position: relative;
+  }
+  .memo-top{
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .memo-stamp{
+    color: var(--sello-rojo);
+    border: 2px solid var(--sello-rojo);
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    transform: rotate(-2deg);
+  }
+  #discurso{
+    white-space: pre-wrap;
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: #151412;
+    text-align: justify;
+    font-family: 'Special Elite', 'Courier Prime', Courier, monospace;
+  }
+
+  /* SCORE Y DIPLOMA VINTAGE */
+  .score{
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--sello-azul);
+    margin: 22px 0 6px;
+    border-bottom: 2px solid var(--papel-borde);
+    padding-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .score small{
+    display: block;
+    font-family: "Courier Prime", monospace;
+    font-size: 0.82rem;
+    color: var(--tinta-tenue);
+    font-weight: 400;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+  #diploma{
+    display: block;
+    width: 100%;
+    max-width: 460px;
+    height: auto;
+    margin: 18px auto;
+    border: 3px solid #111;
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.7);
+  }
+  .nota{
+    font-size: 0.78rem;
+    color: var(--tinta-tenue);
+    margin-top: 14px;
+    background: var(--papel-oscuro);
+    border: 1px dashed #7d7259;
+    padding: 12px 14px;
+    line-height: 1.4;
+  }
+  .err{
+    color: var(--sello-rojo);
+    font-size: 0.84rem;
+    font-weight: 700;
+    margin-top: 10px;
+    min-height: 1.2em;
+    white-space: pre-wrap;
+  }
+  .loading{
+    color: var(--sello-azul);
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin: 16px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: pulse 1s infinite alternate;
+  }
+  @keyframes pulse{from{opacity:0.6}to{opacity:1}}
+
+  /* PIE DE PÁGINA CLASIFICADO */
+  footer{
+    text-align: center;
+    color: #7b8577;
+    font-size: 0.72rem;
+    margin-top: 40px;
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+    border-top: 1px dashed #30372d;
+    padding-top: 20px;
+  }
+  footer code{
+    background: #1f241d;
+    color: #d1b87a;
+    padding: 2px 6px;
+    border: 1px solid #384234;
+  }
+
+  @media (max-width:600px){
+    header{padding:16px 12px}
+    .header-txt h1{font-size:1.1rem}
+    .pantalla{padding:22px 18px}
+    .pantalla::before{display:none}
+    .step{font-size:0.68rem;padding:7px 9px}
+    .btns button{flex:1}
+    .memo-sheet{padding:18px 16px}
+  }
+</style>
+</head>
+<body>
+
+<div class="security-strip">
+  <span>CONFIDENCIAL // NIVEL DE ACCESO: OPERACIONAL-74</span>
+  <span class="warning">DOCUMENTO CLASIFICADO · LEY DE SEGURIDAD DEL ESTADO</span>
+  <span>FOLIO: EXP-1974-ERRP</span>
+</div>
+
+<header>
+  <div class="header-wrap">
+    <div class="escudo">🦅</div>
+    <div class="header-txt">
+      <div class="gob">REPÚBLICA POPULAR SOBERANA · DESPACHO SUPREMO</div>
+      <h1>Dirección General de Acción Psicológica</h1>
+      <div class="sub">Sistema Centralizado de Homologación Retórica y Discursos de Investidura (ERRP™)</div>
+    </div>
+    <div class="sello-header">ESTRICTO CONTROL</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="steps">
+    <span class="step activo" id="s1"><span class="n">01</span> FICHA SUJETO</span>
+    <span class="step" id="s2"><span class="n">02</span> ANTAGONISTA</span>
+    <span class="step" id="s3"><span class="n">03</span> CALIBRACIÓN</span>
+    <span class="step" id="s4"><span class="n">04</span> PROCLAMA FINAL</span>
+  </div>
+
+  <!-- PANTALLA 1: FICHA DE SUJETO -->
+  <section class="pantalla activa" id="p1">
+    <div class="doc-header">
+      <div>
+        <div class="doc-id">FORMULARIO D-101-A // REGISTRO DE ASPIRANTE SUPREMO</div>
+        <h2>1 · Ficha del Sujeto Redentor</h2>
+        <p class="lead">Ingrese los datos doctrinarios del aspirante para el restablecimiento del orden soberano.</p>
+      </div>
+      <div class="doc-stamp">RESTRINGIDO</div>
+    </div>
+
+    <label class="req">Identidad civil o nombre en clave del líder</label>
+    <input type="text" id="nombre" placeholder="Ej. Juan Pueblo / Comandante Salvador">
+    <div class="err" id="e1"></div>
+
+    <div class="row">
+      <div>
+        <label class="req">Territorio soberano a redimir (País)</label>
+        <input type="text" id="pais" placeholder="Ej. República de la Esperanza">
+      </div>
+      <div>
+        <label>Consigna histórica / Lema de campaña (Opcional)</label>
+        <input type="text" id="eslogan" placeholder="Ej. ¡Patria, Orden y Milagro!">
+      </div>
+    </div>
+
+    <div class="toggle">
+      <input type="checkbox" id="religion">
+      <label for="religion">📜 INVOCACIÓN PROVIDENCIAL Y LITÚRGICA <span style="color:var(--tinta-tenue);font-weight:400">(Activa Movimiento M6: Vínculo Sagrado)</span></label>
+    </div>
+    <div class="toggle">
+      <input type="checkbox" id="familia">
+      <label for="familia">👨‍👩‍👧‍👦 ACREDITACIÓN DE ORIGEN Y NÚCLEO CONSANGUÍNEO <span style="color:var(--tinta-tenue);font-weight:400">(Activa Movimiento M6: Hijo del Pueblo)</span></label>
+    </div>
+
+    <details class="ai" open>
+      <summary>⚙️ Acceso a la Red Neuronal de Cómputo (Clave API Groq)</summary>
+      <div class="grid">
+        <div class="hint" id="aiHint">Para el procesamiento retórico de alta velocidad se requiere una credencial de la red Groq (<a href="https://console.groq.com/keys" target="_blank" style="color:var(--sello-azul);font-weight:700">console.groq.com/keys</a>, gratuita). Esta clave opera exclusivamente en la memoria volátil de su terminal.</div>
+        <label>Clave de enlace (API Key)</label>
+        <input type="text" id="apikey" placeholder="gsk_..." oninput="actualizarModelos()">
+        <div class="hint">Sin clave registrada no es posible activar el subsistema de generación cognitiva.</div>
+        <label>Unidad de Procesamiento (Modelo)</label>
+        <select id="model">
+          <option value="openai/gpt-oss-20b" selected>openai/gpt-oss-20b (Recomendado / Alta velocidad)</option>
+          <option value="openai/gpt-oss-120b">openai/gpt-oss-120b (Capacidad superior)</option>
+          <option value="mixtral-8x7b-32768">mixtral-8x7b-32768</option>
+          <option value="gemma2-9b-it">gemma2-9b-it</option>
+          <option value="deepseek-r1-distill-llama-70b">deepseek-r1-distill-llama-70b</option>
+          <option value="qwen-2.5-32b">qwen-2.5-32b</option>
+        </select>
+      </div>
+    </details>
+
+    <div class="btns">
+      <span></span>
+      <button onclick="sig(1)">Proceder al Formulario 02 →</button>
+    </div>
+  </section>
+
+  <!-- PANTALLA 2: ANTAGONISTA -->
+  <section class="pantalla" id="p2">
+    <div class="doc-header">
+      <div>
+        <div class="doc-id">FORMULARIO D-102-B // DICTAMEN DE AMENAZA SISTÉMICA</div>
+        <h2>2 · Tipificación del Enemigo Común</h2>
+        <p class="lead">Todo molde de ruptura redentora exige la designación categórica de un "ellos" antagónico.</p>
+      </div>
+      <div class="doc-stamp">CONFIDENCIAL</div>
+    </div>
+
+    <label>Categoría de Adversario del Pueblo</label>
+    <select id="antSel">
+      <option value="la casta oligárquica y corrupta">la casta oligárquica y corrupta</option>
+      <option value="las pandillas y agentes del caos">las pandillas y agentes del caos</option>
+      <option value="el establishment tecnocrático internacional">el establishment tecnocrático internacional</option>
+      <option value="la inercia burocrática del viejo régimen">la inercia burocrática del viejo régimen</option>
+      <option value="las élites conspiradoras del pasado">las élites conspiradoras del pasado</option>
+      <option value="__libre">✍️ [Redactar objetivo específico]</option>
+    </select>
+
+    <label>Descripción operacional del adversario (Texto libre)</label>
+    <input type="text" id="antLibre" placeholder="Ej. los jerarcas que desfalcaron el erario nacional desde las sombras">
+    <div class="hint">Si seleccionó una categoría predeterminada arriba, este campo queda subordinado.</div>
+
+    <div class="btns">
+      <button class="sec" onclick="ir(1)">← Retornar a Ficha 01</button>
+      <button onclick="sig(2)">Proceder a Calibración 03 →</button>
+    </div>
+  </section>
+
+  <!-- PANTALLA 3: ESTILO Y DELIRIO RETÓRICO -->
+  <section class="pantalla" id="p3">
+    <div class="doc-header">
+      <div>
+        <div class="doc-id">FORMULARIO D-103-C // PARÁMETROS DE IMPACTO PSICOLÓGICO</div>
+        <h2>3 · Calibración de Intensidad y Doctrina</h2>
+        <p class="lead">Ajuste la graduación de fervor, ruptura dramática y vehemencia mesiánica.</p>
+      </div>
+      <div class="doc-stamp">URGENTE</div>
+    </div>
+
+    <label>Potenciómetro de Fervor y Delirio Retórico</label>
+    <div class="slider">
+      <input type="range" id="absurdo" min="1" max="5" value="3">
+      <span class="val" id="absVal">3 · Fervor Medio</span>
+    </div>
+    <div class="hint">Graduación: 1 = Discurso formal creíble / 5 = Histeria redentora total y delirio absoluto.</div>
+
+    <label>Directiva extraordinaria o decreto insólito (Toque personal)</label>
+    <textarea id="toque" placeholder="Ej. clausurar los ministerios obsoletos y repartir tractores soviéticos a cada hogar"></textarea>
+
+    <div class="mov">
+      <span class="badge">M1 — M7</span><b>Protocolo de Automatización ERRP-74</b>
+      <div class="ej">El procesador integrará obligatoriamente los 7 movimientos: Ruptura Fundacional (M1), Dicotomía Radical (M2), Mesianismo Personal (M3), Legitimación por Resultado (M4), Desintermediación de Prensa (M5), Registro Híbrido Solemne-Popular (M6) y Certeza Inapelable (M7).</div>
+    </div>
+
+    <div class="btns">
+      <button class="sec" onclick="ir(2)">← Retornar a Ficha 02</button>
+      <button onclick="generar()">🦅 Redactar Proclama Oficial por IA</button>
+    </div>
+  </section>
+
+  <!-- PANTALLA 4: DISCURSO Y ACTA OFICIAL -->
+  <section class="pantalla" id="p4">
+    <div class="doc-header">
+      <div>
+        <div class="doc-id">ACTA PROTOCOLAR N° 1974-TRANSMISIÓN // DESPACHO PRESIDENCIAL</div>
+        <h2>4 · Manifiesto de Investidura Oficial</h2>
+        <p class="lead">Documento final homologado para su lectura pública inmediata en Cadena Nacional.</p>
+      </div>
+      <div class="doc-stamp" style="color:var(--verde-militar);border-color:var(--verde-militar)">HOMOLOGADO</div>
+    </div>
+
+    <div class="toolbar">
+      <button class="sec" onclick="escuchar()">📻 Transmitir por Cadena (Audio)</button>
+      <button class="sec" onclick="copiar()">📋 Duplicar Manifiesto (Copiar)</button>
+      <button class="sec" onclick="ir(3)">✏️ Rectificar Parámetros</button>
+      <button class="ghost" onclick="reiniciar()">📁 Nuevo Expediente (Reiniciar)</button>
+    </div>
+
+    <div class="memo-sheet">
+      <div class="memo-top">
+        <span>GACETA OFICIAL DE LA REPÚBLICA // TRANSMISIÓN SUPREMA</span>
+        <span class="memo-stamp">EMISIÓN IRREVERSIBLE</span>
+      </div>
+      <div id="discurso"></div>
+    </div>
+    
+    <div class="err" id="eGen"></div>
+
+    <h2 style="margin-top:34px">Certificación de Eficacia ERRP™</h2>
+    <div class="score" id="score"></div>
+    
+    <canvas id="diploma" width="880" height="1120"></canvas>
+    
+    <div class="toolbar" style="justify-content:center">
+      <button onclick="descargar()">⬇ Descargar Credencial Oficial PNG</button>
+    </div>
+    
+    <div class="nota">
+      <b>NOTA DE INTELIGENCIA:</b> El recuadro <b>"SUJETO DESIGNADO // FOTO POLAROID"</b> ha sido dejado expedito para la inserción fotográfica del líder. Todo el cómputo se efectúa en su terminal local.
+    </div>
+  </section>
+
+  <footer>
+    DIRECCIÓN GENERAL DE ACCIÓN PSICOLÓGICA · COMISIÓN DE ANÁLISIS DEL DISCURSO (VER <code>ERRP_marco.md</code>)<br>
+    DEMOSTRACIÓN RETÓRICA COGNITIVA: CUALQUIER TEXTO SUJETO A LOS 7 MOVIMIENTOS ADQUIERE INVESTIDURA PRESIDENCIAL.<br>
+    PROYECTO SATÍRICO DE INTELIGENCIA RETÓRICA · SIN AFILIACIÓN PARTIDARIA
+  </footer>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const LS = 'genpres_ai_v1';
+// Si se ejecuta en un servidor web (Vercel), se usa automáticamente el endpoint /api/groq
+const isLocalFile = window.location.protocol === 'file:';
+const PROXY_URL = isLocalFile ? '' : '/api/groq';
+let D = cargar();
+
+function cargar(){ try{ return JSON.parse(localStorage.getItem(LS)) || {}; }catch(e){ return {}; } }
+function guardar(){ localStorage.setItem(LS, JSON.stringify(D)); }
+
+function show(n){
+  for(let i=1;i<=4;i++){
+    $('p'+i).classList.toggle('activa', i===n);
+    $('s'+i).classList.toggle('activo', i===n);
+    $('s'+i).classList.toggle('hecho', i<n);
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function ir(n){ show(n); }
+
+function sig(n){
+  if(n===1){
+    const nom=$('nombre').value.trim(), pais=$('pais').value.trim();
+    if(!nom || !pais){ $('e1').textContent = !nom&&!pais?'Nombre de líder y territorio son obligatorios.':(!nom?'Falta la identidad del líder.':'Falta el territorio nacional.'); return; }
+    $('e1').textContent='';
+    D.nombre=nom; D.pais=pais; D.eslogan=$('eslogan').value.trim();
+    D.religion=$('religion').checked; D.familia=$('familia').checked;
+    D.apikey=$('apikey').value.trim(); D.model=$('model').value;
+  }
+  if(n===2){
+    const sel=$('antSel').value;
+    D.antagonista = sel==='__libre' ? ($('antLibre').value.trim()||'la casta oligárquica') : sel;
+  }
+  if(n===3){
+    D.absurdo=+$('absurdo').value;
+    D.toque=$('toque').value.trim();
+  }
+  guardar(); show(n+1);
+}
+
+/* slider label vintage */
+$('absurdo').addEventListener('input', e=>{
+  const v=+e.target.value; const t=['','1 · Sobrio y Creíble','2 · Tensión Leve','3 · Fervor Medio','4 · Vehemencia Dramática','5 · Histeria Colectiva Total'][v];
+  $('absVal').textContent = t;
+});
+
+/* ---- prompt para la IA ---- */
+function buildPrompt(d){
+  const es = d.eslogan ? `«${d.eslogan}»` : 'un nuevo amanecer de redención';
+  const abs = ['','sutil y creíble','levemente exaltado','claramente fervoroso y cómico','muy dramático y extravagante','delirante, mesiánico y absurdo al máximo'][d.absurdo||3];
+  const relig = d.religion ? ' Incluye un tono solemne/religioso (agradecimiento a la providencia y destino divino).' : '';
+  const fam = d.familia ? ' Menciona a tu familia y orígenes humildes como prueba de tu comunión con el pueblo.' : '';
+  const toque = d.toque ? ` Instrucción extraordinaria obligatoria: ${d.toque}.` : '';
+  return `Eres un sistema analítico de redacción de discursos presidenciales de alto impacto retórico (década de 1970 / estilo proclamación solemne-populista).
+Tu misión: escribir un DISCURSO DE INVESTIDURA PRESIDENCIAL FICTICIO, grandilocuente, cómico y satírico, en español, aplicando la "Estrategia de Ruptura Redentora Personalizada" (ERRP).
+
+DATOS DEL MANDATARIO:
+- Líder Supremo: ${d.nombre}
+- Territorio Soberano: ${d.pais}
+- Consigna de Campaña: ${es}
+- Enemigo Antagónico ("ellos"): ${d.antagonista}
+- Nivel de Fervor y Delirio: ${abs}.${relig}${fam}${toque}
+
+REGLAS DOCTRINARIAS OBLIGATORIAS (debes incluir los 7 movimientos ERRP con contundencia):
+M1 Ruptura fundacional: declara que el pasado fue una larga noche de podredumbre y hoy se refunda la patria.
+M2 Dicotomía: contrapón "nosotros" (el pueblo noble y trabajador) vs "ellos" (${d.antagonista}).
+M3 Personalización salvadora: el líder se presenta como el instrumento histórico predestinado para salvar y liberar.
+M4 Legitimación por resultado: justifica su autoridad con un logro tangible (inventado, grandilocuente o cómico).
+M5 Desintermediación: declara hablar directamente al pueblo, sorteando a la prensa vendida y a los intermediarios.
+M6 Registro solemne-popular: combina giros de alta oratoria con expresiones populares.${relig||fam?' (activado por el usuario)':''}
+M7 Certeza sin matices: cierra con determinación férrea, sin dudas, concesiones ni vacilaciones.
+
+TONO: Sátira política inofensiva de ficción. NO ataques a partidos o personas reales.
+LONGITUD: Discurso extenso, completo y estructurado de aproximadamente una página (entre 500 y 750 palabras), dividido en varios párrafos elocuentes, dramáticos y apasionados.
+
+DEVUELVE ÚNICAMENTE un objeto JSON válido, sin bloques de código ni texto extra, con esta estructura exacta:
+{"discurso":"texto completo del discurso en varios párrafos","movimientos":{"M1":true,"M2":true,"M3":true,"M4":true,"M5":true,"M6":true,"M7":true}}`;
+}
+
+function parseGroq(text){
+  try{
+    const i=text.indexOf('{'), j=text.lastIndexOf('}');
+    if(i>=0 && j>i){
+      const obj=JSON.parse(text.slice(i,j+1));
+      if(obj && typeof obj.discurso==='string') return obj;
+    }
+  }catch(e){}
+  return null;
+}
+
+/* ---- score institucional ---- */
+function score(mov){
+  let s=0; for(const k in mov) if(mov[k]) s++;
+  let niv,sub;
+  if(s>=7){niv='RANGO BUKELE';sub='Mesías Total // Mando Absoluto';}
+  else if(s===6){niv='RANGO MILEI';sub='Profeta Doctrinal // Ruptura Férrea';}
+  else if(s===5){niv='RANGO NOBOA';sub='Comisario Ejecutivo // Planificación';}
+  else if(s===4){niv='RANGO PATRIOTA';sub='Agitador Sectorial // Falta de Unanimidad';}
+  else {niv='ASPIRANTE INMADURO';sub='Discurso contaminado de vacilación democrática';}
+  return {s,niv,sub};
+}
+function grado(s){ return s>=7 ? '7/7 · HOMOLOGACIÓN COMPLETA' : s+'/7 · RETÓRICA PARCIAL'; }
+
+async function actualizarModelos(){
+  const key = ($('apikey').value.trim() || D.apikey || '');
+  if(!key || key.length < 10) return;
+  try{
+    const r = await fetch('https://api.groq.com/openai/v1/models', {
+      headers: {'Authorization': 'Bearer ' + key}
+    });
+    if(!r.ok) return;
+    const data = await r.json();
+    if(data && Array.isArray(data.data)){
+      const sel = $('model');
+      const cur = sel.value;
+      const valid = data.data
+        .filter(m => m.active !== false && !m.id.includes('whisper') && !m.id.includes('tts') && !m.id.includes('embed') && !m.id.includes('guard') && !m.id.includes('vision') && !m.id.includes('safeguard'))
+        .map(m => m.id)
+        .sort();
+      if(valid.length > 0){
+        sel.innerHTML = valid.map(id => `<option value="${id}" ${id===cur?'selected':''}>${id}</option>`).join('');
+        if(!valid.includes(cur)){
+          const pref = valid.find(m => m.includes('oss-20b') || m.includes('mixtral') || m.includes('gemma') || m.includes('qwen')) || valid[0];
+          sel.value = pref;
+          D.model = pref;
+          guardar();
+        }
+      }
+    }
+  }catch(e){}
+}
+
+/* ---- generar discurso ---- */
+async function generar(){
+  const key = ($('apikey').value.trim() || D.apikey || '');
+  let model = ($('model') && $('model').value) ? $('model').value : (D.model || 'openai/gpt-oss-20b');
+  if(model.includes('llama-3') || model.includes('llama3')) model = 'openai/gpt-oss-20b';
+  const err=document.getElementById('eGen');
+  err.textContent='';
+  
+  const useProxy = !!PROXY_URL && (/^https?:\/\//.test(PROXY_URL) || PROXY_URL.startsWith('/'));
+  if(!useProxy && !key){ err.textContent='[ERROR 401] Falta la Clave de Enlace (API Key). Ingrésela en la Ficha 01.'; ir(1); return; }
+
+  D.absurdo=+$('absurdo').value; D.toque=$('toque').value.trim();
+  if(key) D.apikey=key; D.model=model; guardar();
+
+  const prompt=buildPrompt(D);
+  const body={ model:model, messages:[{role:'user',content:prompt}], temperature:0.9, max_tokens:2500,
+               response_format:{type:'json_object'} };
+
+  const url = useProxy ? PROXY_URL : 'https://api.groq.com/openai/v1/chat/completions';
+  const headers = useProxy ? {'Content-Type':'application/json'}
+                           : {'Content-Type':'application/json','Authorization':'Bearer '+key};
+
+  const btn=event?event.target:null;
+  if(btn){ btn.disabled=true; btn.textContent='⏳ PROCESANDO EN TELETIPO…'; }
+  const loading=document.createElement('div'); loading.className='loading'; loading.textContent='📠 LA CENTRAL NEURONAL ESTÁ REDACTANDO LA PROCLAMA OFICIAL…';
+  $('p4').querySelector('.score').before(loading);
+  show(4);
+
+  try{
+    let r=await fetch(url,{method:'POST',headers:headers,body:JSON.stringify(body)});
+    let data=await r.json();
+    
+    // Auto-fallback en caliente si el modelo no existe o fue descontinuado
+    const errMsg = (data?.error?.message || '').toLowerCase();
+    const isModelErr = !r.ok && (data?.error?.code==='model_not_found' || data?.error?.code==='model_decommissioned' || errMsg.includes('decommissioned') || errMsg.includes('not exist') || errMsg.includes('no longer supported') || errMsg.includes('model'));
+    
+    if(isModelErr && key){
+      try{
+        const mRes = await fetch('https://api.groq.com/openai/v1/models', { headers: {'Authorization': 'Bearer ' + key} });
+        if(mRes.ok){
+          const mData = await mRes.json();
+          const valid = (mData?.data || [])
+            .filter(m => m.active !== false && !m.id.includes('whisper') && !m.id.includes('tts') && !m.id.includes('embed') && !m.id.includes('guard') && !m.id.includes('vision') && !m.id.includes('safeguard'))
+            .map(m => m.id);
+          const nextModel = valid.find(m => m !== body.model) || valid[0];
+          if(nextModel){
+            console.warn('Reasignando automáticamente a unidad activa:', nextModel);
+            body.model = nextModel;
+            D.model = nextModel;
+            if($('model')) $('model').value = nextModel;
+            guardar();
+            r = await fetch(url, {method:'POST', headers:headers, body:JSON.stringify(body)});
+            data = await r.json();
+          }
+        }
+      }catch(errFallback){}
+    }
+    
+    if(!r.ok){ err.textContent='[FALLO DE CÓMPUTO '+r.status+']:\n'+JSON.stringify(data,null,2); return; }
+    const raw=data?.choices?.[0]?.message?.content||'';
+    const parsed=parseGroq(raw);
+    let texto, mov;
+    if(parsed){
+      texto=parsed.discurso;
+      mov=parsed.movimientos || {M1:true,M2:true,M3:true,M4:true,M5:true,M6:!!(D.religion||D.familia),M7:true};
+    } else {
+      texto=raw || '(sin respuesta del teletipo central)';
+      mov={M1:true,M2:true,M3:true,M4:true,M5:true,M6:!!(D.religion||D.familia),M7:true};
+      err.textContent='[AVISO DE REGISTRO] La central devolvió texto directo con verificación estándar.';
+    }
+    D.texto=texto; D._mov=mov;
+    const r2=score(mov);
+    $('discurso').textContent=texto;
+    $('score').innerHTML=`DICTAMEN DE HOMOLOGACIÓN: ${grado(r2.s)} · ${r2.niv}<small>${r2.sub}</small>`;
+    dibujar(r2,mov);
+  }catch(e){
+    const det=(e&&(e.stack||e.toString()))||'error de enlace teletipo';
+    err.textContent='[INTERRUPCIÓN DE LÍNEA ANALÓGICA]:\n'+det;
+  }finally{
+    loading.remove();
+    if(btn){ btn.disabled=false; btn.textContent='🦅 Redactar Proclama Oficial por IA'; }
+  }
+}
+
+/* ---- DIPLOMA / EXPEDIENTE CLASIFICADO EN CANVAS (1970s INTELLIGENCE DOSSIER) ---- */
+function dibujar(r,mov){
+  const c=$('diploma'), x=c.getContext('2d'), W=c.width, H=c.height;
+  
+  // Fondo de papel manila envejecido de los 70s
+  x.fillStyle='#f0e8d3'; x.fillRect(0,0,W,H);
+  
+  // Textura sutil de cuadrícula de microfilm
+  x.strokeStyle='rgba(160,140,110,0.15)'; x.lineWidth=1;
+  for(let i=30; i<W; i+=30){ x.beginPath(); x.moveTo(i,0); x.lineTo(i,H); x.stroke(); }
+  for(let j=30; j<H; j+=30){ x.beginPath(); x.moveTo(0,j); x.lineTo(W,j); x.stroke(); }
+  
+  // Marco de expediente oficial
+  x.strokeStyle='#23201a'; x.lineWidth=12; x.strokeRect(22,22,W-44,H-44);
+  x.strokeStyle='#998263'; x.lineWidth=2;  x.strokeRect(36,36,W-72,H-72);
+  
+  // Encabezado gubernamental de inteligencia
+  x.textAlign='center';
+  x.fillStyle='#594f3d'; x.font='bold 14px "Courier Prime", monospace';
+  x.fillText('REPÚBLICA POPULAR SOBERANA // DIRECCIÓN DE SEGURIDAD DEL ESTADO', W/2, 68);
+  x.fillStyle='#1c1914'; x.font='bold 28px "Cinzel", Georgia, serif';
+  x.fillText('CREDENCIAL DE MANDO SUPREMO', W/2, 102);
+  x.fillStyle='#9e2424'; x.font='bold 13px "Courier Prime", monospace';
+  x.fillText('— EXPEDIENTE CLASIFICADO N° ERRP-1974/MK —', W/2, 126);
+  
+  // Sello rojo desclasificado inclinado
+  x.save();
+  x.translate(W-140, 95);
+  x.rotate(0.12);
+  x.strokeStyle='#9e2424'; x.lineWidth=3;
+  x.strokeRect(-90,-22,180,44);
+  x.fillStyle='#9e2424'; x.font='bold 15px "Courier Prime", monospace';
+  x.fillText('DESCLASIFICADO', 0, -2);
+  x.font='bold 10px "Courier Prime", monospace';
+  x.fillText('OPERACIÓN 1974', 0, 14);
+  x.restore();
+
+  // Marco para foto polaroid
+  x.setLineDash([8,6]); x.strokeStyle='#443e33'; x.lineWidth=2;
+  x.strokeRect(W/2-110, 150, 220, 260);
+  x.setLineDash([]);
+  x.fillStyle='rgba(0,0,0,0.04)'; x.fillRect(W/2-110, 150, 220, 260);
+  
+  // Clip metálico simulado en la polaroid
+  x.fillStyle='#777'; x.fillRect(W/2-30, 142, 60, 16);
+  x.strokeStyle='#222'; x.lineWidth=1; x.strokeRect(W/2-30, 142, 60, 16);
+
+  x.fillStyle='#736854'; x.font='bold 13px "Courier Prime", monospace';
+  x.fillText('[SUJETO AUTORIZADO]', W/2, 270);
+  x.font='11px "Courier Prime", monospace';
+  x.fillText('ADJUNTAR FOTO POLAROID', W/2, 290);
+  
+  // Datos del Sujeto
+  x.fillStyle='#111'; x.font='bold 27px "Cinzel", Georgia, serif';
+  x.fillText((D.nombre||'LÍDER DESIGNADO').toUpperCase(), W/2, 452);
+  
+  x.fillStyle='#9e2424'; x.font='bold 16px "Courier Prime", monospace';
+  x.fillText(D.eslogan?`«${D.eslogan}»`:`INVESTIDURA SUPREMA EN ${D.pais||'LA PATRIA'}`, W/2, 482);
+  
+  x.fillStyle='#1a3c61'; x.font='bold 21px "Cinzel", Georgia, serif';
+  x.fillText(r.niv, W/2, 524);
+  x.fillStyle='#594f3d'; x.font='italic 14px "Courier Prime", monospace';
+  x.fillText(r.sub, W/2, 546);
+  
+  // Lista de verificación técnica de los 7 Movimientos
+  const lista=[
+    ['M1 · RUPTURA FUNDACIONAL DE RÉGIMEN', mov.M1],
+    ['M2 · DICOTOMÍA NOBLE PUEBLO VS ENEMIGO', mov.M2],
+    ['M3 · MESIANISMO Y SALVACIÓN PERSONAL', mov.M3],
+    ['M4 · LEGITIMACIÓN POR RESULTADO TANGIBLE', mov.M4],
+    ['M5 · DESINTERMEDIACIÓN (BYPASS MEDIÁTICO)', mov.M5],
+    ['M6 · REGISTRO HÍBRIDO SOLEMNE-POPULAR', mov.M6],
+    ['M7 · CERTEZA DOGMÁTICA INAPELABLE', mov.M7]
+  ];
+  
+  let y=596; x.textAlign='left';
+  lista.forEach(([t,ok])=>{
+    // Casilla de verificación
+    x.strokeStyle='#222'; x.lineWidth=2; x.strokeRect(84, y-16, 20, 20);
+    x.fillStyle=ok?'#1f6e2b':'#a82424';
+    x.font='bold 18px "Courier Prime", monospace';
+    x.fillText(ok?'✔':'✘', 87, y);
+    
+    x.fillStyle='#1a1815';
+    x.font='bold 14px "Courier Prime", monospace';
+    x.fillText(t, 120, y);
+    
+    // Línea punteada de expediente
+    x.strokeStyle='rgba(0,0,0,0.12)'; x.lineWidth=1;
+    x.setLineDash([3,3]);
+    x.beginPath(); x.moveTo(560, y-4); x.lineTo(W-90, y-4); x.stroke();
+    x.setLineDash([]);
+    
+    x.fillStyle=ok?'#1f6e2b':'#a82424';
+    x.font='bold 11px "Courier Prime", monospace';
+    x.fillText(ok?'[CONFORME]':'[OMISIÓN]', W-175, y);
+    y+=38;
+  });
+  
+  // Sello circular oficial de caucho en la esquina
+  const sx=W-140, sy=H-110;
+  x.strokeStyle='#9e2424'; x.lineWidth=3;
+  x.beginPath(); x.arc(sx,sy,66,0,2*Math.PI); x.stroke();
+  x.beginPath(); x.arc(sx,sy,55,0,2*Math.PI); x.lineWidth=1.5; x.stroke();
+  x.fillStyle='#9e2424'; x.textAlign='center';
+  x.font='bold 12px "Courier Prime", monospace';
+  x.fillText('SEGURIDAD', sx, sy-16);
+  x.font='bold 15px "Courier Prime", monospace';
+  x.fillText('ERRP-1974', sx, sy+3);
+  x.font='bold 10px "Courier Prime", monospace';
+  x.fillText('OFICIAL', sx, sy+20);
+  
+  // Firma protocolar a la izquierda
+  x.textAlign='left';
+  x.strokeStyle='#222'; x.lineWidth=2;
+  x.beginPath(); x.moveTo(84, H-90); x.lineTo(320, H-90); x.stroke();
+  x.fillStyle='#594f3d'; x.font='11px "Courier Prime", monospace';
+  x.fillText('GRAL. COMANDANTE EN JEFE // D.G.A.P.', 84, H-74);
+  x.fillText('AUTORIZADO PARA DIFUSIÓN EN CADENA', 84, H-58);
+}
+
+/* ---- audio / copiar / descargar / reiniciar ---- */
+function escuchar(){
+  if(!('speechSynthesis' in window)){ alert('Su terminal no cuenta con sintetizador de voz analógico.'); return; }
+  if(!D.texto){ alert('Genere primero el manifiesto en la Ficha 04.'); return; }
+  const u=new SpeechSynthesisUtterance(D.texto); u.lang='es-ES'; u.rate=.92;
+  speechSynthesis.cancel(); speechSynthesis.speak(u);
+}
+function copiar(){
+  const t=D.texto||'';
+  if(!t){ alert('No hay texto en el teletipo para duplicar.'); return; }
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(()=>alert('Manifiesto duplicado al portapapeles.')).catch(fb);
+  else fb();
+  function fb(){ const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');alert('Manifiesto duplicado.');}catch(e){alert('No se pudo copiar el teletipo.');} ta.remove(); }
+}
+function descargar(){
+  const a=document.createElement('a');
+  a.download=`expediente_errp_${(D.nombre||'lider').replace(/\s+/g,'_')}.png`;
+  a.href=$('diploma').toDataURL('image/png'); a.click();
+}
+function reiniciar(){
+  if(confirm('¿Destruir el expediente actual y abrir una nueva investigación?')){ localStorage.removeItem(LS); D={}; location.reload(); }
+}
+
+/* precarga institucional */
+(function(){
+  if(!D||Object.keys(D).length===0) return;
+  if(D.nombre) $('nombre').value=D.nombre;
+  if(D.pais) $('pais').value=D.pais;
+  if(D.eslogan) $('eslogan').value=D.eslogan;
+  if(D.religion) $('religion').checked=true;
+  if(D.familia) $('familia').checked=true;
+  if(D.apikey) { $('apikey').value=D.apikey; actualizarModelos(); }
+  if(D.model && !D.model.includes('llama') && !D.model.includes('70b')) {
+    $('model').value=D.model;
+  } else {
+    D.model = 'openai/gpt-oss-20b';
+    $('model').value = 'openai/gpt-oss-20b';
+    guardar();
+  }
+  if(D.antagonista){ const o=[...$('antSel').options].map(x=>x.value); $('antSel').value=o.includes(D.antagonista)?D.antagonista:'__libre'; $('antLibre').value=D.antagonista; }
+  if(D.absurdo){
+    $('absurdo').value=D.absurdo;
+    const t=['','1 · Sobrio y Creíble','2 · Tensión Leve','3 · Fervor Medio','4 · Vehemencia Dramática','5 · Histeria Colectiva Total'][D.absurdo];
+    $('absVal').textContent=t;
+  }
+  if(!isLocalFile){
+    const hint = $('aiHint');
+    if(hint) hint.innerHTML = '<span style="color:#1f6e2b;font-weight:700">[SERVIDOR CENTRAL ACTIVO]</span> La estación está conectada al proxy oficial en Vercel. <b>Los visitantes no necesitan ingresar clave API</b>. Si desea forzar una clave propia, escríbala abajo.';
+  }
+  if(D.toque) $('toque').value=D.toque;
+})();
+</script>
+</body>
+</html>

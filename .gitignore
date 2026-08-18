@@ -1,0 +1,10 @@
+# Ignorar claves y secreto que no deben subirse
+*.local
+.env
+.env.*
+worker/.dev.vars
+wrangler.toml.bak
+
+# No ignorar el código fuente del worker, solo secretos
+!worker/worker.js
+!worker/wrangler.toml

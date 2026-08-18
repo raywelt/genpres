@@ -1,0 +1,6 @@
+name = "genpres-proxy"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+
+# Para deploy por CLI (opcional). Si usás el editor web de Cloudflare, no necesitás esto.
+# La variable GROQ_KEY la configurás en el dashboard (Settings > Variables > Secrets), NO aquí.
