@@ -611,9 +611,9 @@
         <div class="hint">Sin clave registrada no es posible activar el subsistema de generación cognitiva en modo local.</div>
         <label>Unidad de Procesamiento (Modelo)</label>
         <select id="model">
-          <option value="llama-3.3-70b-versatile" selected>llama-3.3-70b-versatile (Recomendado / estable)</option>
-          <option value="openai/gpt-oss-20b">openai/gpt-oss-20b (Alta velocidad)</option>
+          <option value="openai/gpt-oss-20b" selected>openai/gpt-oss-20b (Recomendado / tu cuenta)</option>
           <option value="openai/gpt-oss-120b">openai/gpt-oss-120b (Capacidad superior)</option>
+          <option value="llama-3.3-70b-versatile">llama-3.3-70b-versatile (si tu cuenta lo tiene)</option>
           <option value="mixtral-8x7b-32768">mixtral-8x7b-32768</option>
           <option value="gemma2-9b-it">gemma2-9b-it</option>
           <option value="deepseek-r1-distill-llama-70b">deepseek-r1-distill-llama-70b</option>
@@ -876,7 +876,7 @@ async function actualizarModelos(){
 /* ---- generar discurso ---- */
 async function generar(){
   const key = ($('apikey').value.trim() || D.apikey || '');
-  let model = ($('model') && $('model').value) ? $('model').value : (D.model || 'llama-3.3-70b-versatile');
+  let model = ($('model') && $('model').value) ? $('model').value : (D.model || 'openai/gpt-oss-20b');
   // No forzamos un modelo concreto: el usuario elige. Sin response_format estricto, cualquiera funciona vía parseGroq.
   const err=document.getElementById('eGen');
   err.textContent='';
@@ -1112,8 +1112,8 @@ function reiniciar(){
   if(D.model && !D.model.includes('llama') && !D.model.includes('70b')) {
     $('model').value=D.model;
   } else {
-    D.model = 'llama-3.3-70b-versatile';
-    $('model').value = 'llama-3.3-70b-versatile';
+    D.model = 'openai/gpt-oss-20b';
+    $('model').value = 'openai/gpt-oss-20b';
     guardar();
   }
   if(D.antagonista){ const o=[...$('antSel').options].map(x=>x.value); $('antSel').value=o.includes(D.antagonista)?D.antagonista:'__libre'; $('antLibre').value=D.antagonista; }
