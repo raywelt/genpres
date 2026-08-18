@@ -602,13 +602,13 @@
       <label for="familia">👨‍👩‍👧‍👦 ACREDITACIÓN DE ORIGEN Y NÚCLEO CONSANGUÍNEO <span style="color:var(--tinta-tenue);font-weight:400">(Activa Movimiento M6: Hijo del Pueblo)</span></label>
     </div>
 
-    <details class="ai" open>
-      <summary>⚙️ Acceso a la Red Neuronal de Cómputo (Clave API Groq)</summary>
+    <details class="ai">
+      <summary>⚙️ Acceso avanzado a la Red Neuronal de Cómputo (opcional)</summary>
       <div class="grid">
-        <div class="hint" id="aiHint">Para el procesamiento retórico de alta velocidad se requiere una credencial de la red Groq (<a href="https://console.groq.com/keys" target="_blank" style="color:var(--sello-azul);font-weight:700">console.groq.com/keys</a>, gratuita). Esta clave opera exclusivamente en la memoria volátil de su terminal.</div>
+        <div class="hint" id="aiHint">En la versión alojada (Vercel) este paso no es necesario: el enlace cognitivo ya está preconfigurado. Solo completá esto si ejecutás la web en tu propia máquina sin el servidor proxy. La credencial de la red Groq es gratuita (<a href="https://console.groq.com/keys" target="_blank" style="color:var(--sello-azul);font-weight:700">console.groq.com/keys</a>) y opera exclusivamente en la memoria volátil de su terminal.</div>
         <label>Clave de enlace (API Key)</label>
-        <input type="text" id="apikey" placeholder="gsk_..." oninput="actualizarModelos()">
-        <div class="hint">Sin clave registrada no es posible activar el subsistema de generación cognitiva.</div>
+        <input type="text" id="apikey" placeholder="gsk_... (solo modo local)" oninput="actualizarModelos()">
+        <div class="hint">Sin clave registrada no es posible activar el subsistema de generación cognitiva en modo local.</div>
         <label>Unidad de Procesamiento (Modelo)</label>
         <select id="model">
           <option value="openai/gpt-oss-20b" selected>openai/gpt-oss-20b (Recomendado / Alta velocidad)</option>
